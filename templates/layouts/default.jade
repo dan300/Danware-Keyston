@@ -4,7 +4,6 @@ doctype html
 html
 
 	//- HTML HEADER
-		
 	head
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -56,7 +55,12 @@ html
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 						ul.nav.navbar-nav.navbar-right
-								li: a(href='/contact') Contact
+							if user
+								if user.canAccessKeystone
+									li: a(href='/keystone') Open Keystone
+								li: a(href='/keystone/signout') Sign Out
+							else
+								li: a(href='/keystone/signin') Sign In
 
 		//- BODY
 		#body
